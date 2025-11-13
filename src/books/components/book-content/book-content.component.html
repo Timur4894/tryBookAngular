@@ -1,0 +1,35 @@
+<div class="book-content-container">
+  <div class="scroll-content">
+    <div class="content-header">
+      <button class="back-button" (click)="goBack()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+    </div>
+
+    <h1 class="title" *ngIf="book">{{ book.title }}</h1>
+    <p class="author" *ngIf="book">{{ book.author }}</p>
+
+    <div class="content-container">
+      <h2 class="content-title">Chapter {{ currentChapter }}</h2>
+      <p class="content-text" *ngFor="let paragraph of content.split('\n\n')">{{ paragraph }}</p>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="nav-button" (click)="previousChapter()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span>Previous</span>
+    </button>
+    <button class="nav-button" (click)="nextChapter()">
+      <span>Next</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+</div>
+

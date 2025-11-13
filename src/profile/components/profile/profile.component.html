@@ -1,0 +1,96 @@
+<div class="profile-container">
+  <div class="account-container">
+    <h1 class="title">Профиль</h1>
+    <div class="profile-image-container">
+      <div class="profile-placeholder" *ngIf="!profile?.profile_picture">
+        {{ (profile?.name || 'User').charAt(0).toUpperCase() }}
+      </div>
+      <img 
+        *ngIf="profile && profile.profile_picture"
+        [src]="profile!.profile_picture" 
+        [alt]="profile?.name"
+        class="profile-image">
+    </div>
+    <p class="name">Имя</p>
+    <p class="name-value">{{ profile?.name || 'Пользователь' }}</p>
+  </div>
+
+  <div class="account-info-container">
+    <div class="group-option-container">
+      <div class="option-container" (click)="navigateToEditProfile()">
+        <span class="option-title">Редактировать профиль</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+      <div class="option-container" (click)="handleOpenModal()">
+        <span class="option-title">Изменить пароль</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="group-option-container">
+      <div class="option-container">
+        <span class="option-title">Уведомления</span>
+        <input 
+          type="checkbox" 
+          [(ngModel)]="notificationsEnabled"
+          class="toggle-switch">
+      </div>
+      <div class="option-container">
+        <span class="option-title">Тема</span>
+        <input 
+          type="checkbox" 
+          [(ngModel)]="themeEnabled"
+          class="toggle-switch">
+      </div>
+    </div>
+
+    <div class="group-option-container">
+      <div class="option-container" (click)="navigateToSubscription()">
+        <span class="option-title">Подписка</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="group-option-container">
+      <div class="option-container" (click)="openSupportEmail()">
+        <span class="option-title">Поддержка</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+      <div class="option-container" (click)="openPrivacyPolicy()">
+        <span class="option-title">Политика конфиденциальности</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="group-option-container">
+      <div class="option-container logout-option" (click)="logout()">
+        <span class="option-title logout-text">Выйти</span>
+      </div>
+    </div>
+  </div>
+
+  <app-custom-modal
+    [visible]="isModalVisible"
+    title="Изменить пароль"
+    mainText="Мы отправим вам email для сброса пароля"
+    (onClose)="handleCloseModal()">
+  </app-custom-modal>
+
+  <app-custom-modal
+    [visible]="isSupportModalVisible"
+    title="Поддержка"
+    mainText="Если вам нужна помощь, свяжитесь с нами: support@trybook.com"
+    (onClose)="handleCloseModal()">
+  </app-custom-modal>
+</div>
+

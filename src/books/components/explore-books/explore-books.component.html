@@ -1,0 +1,42 @@
+<div class="explore-container">
+  <h1 class="title">Your Interest</h1>
+  
+  <div class="search-container">
+    <app-custom-text-input
+      type="text"
+      placeholder="Search"
+      [value]="searchTerm"
+      (valueChange)="searchTerm = $event; onSearchChange()">
+    </app-custom-text-input>
+  </div>
+
+  <div class="books-grid" *ngIf="!isLoading">
+    <div 
+      class="book-card" 
+      *ngFor="let book of books"
+      (click)="navigateToBookDetail(book.id)">
+      <div class="image-container">
+        <div class="image-shadow">
+          <div class="book-placeholder">
+            <div class="placeholder-icon">📖</div>
+            <div class="placeholder-text">{{ book.title.charAt(0) }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="book-info">
+        <p class="book-name">{{ book.title }}</p>
+        <p class="author-name">{{ book.author }}</p>
+        <p class="book-description">{{ book.description }}</p>
+        <div class="book-meta">
+          <span class="book-pages">{{ book.pages }} стр.</span>
+          <span class="book-rating">⭐ {{ book.rating }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    <p>Loading books...</p>
+  </div>
+</div>
+

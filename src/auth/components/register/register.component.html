@@ -1,0 +1,53 @@
+<div class="register-container">
+  <div class="header-section">
+    <h1 class="title">Create an account</h1>
+  </div>
+
+  <div class="form-section">
+    <div class="form-group">
+      <label class="label">Full Name</label>
+      <app-custom-text-input
+        type="text"
+        placeholder="Enter your full name"
+        [value]="fullName"
+        (valueChange)="fullName = $event"
+        [inputStyle]="{ marginBottom: '24px' }">
+      </app-custom-text-input>
+    </div>
+
+    <div class="form-group">
+      <label class="label">Email</label>
+      <app-custom-text-input
+        type="email"
+        placeholder="Enter your email"
+        [value]="email"
+        (valueChange)="email = $event"
+        [inputStyle]="{ marginBottom: '24px' }">
+      </app-custom-text-input>
+    </div>
+
+    <div class="form-group">
+      <label class="label">Password</label>
+      <app-custom-text-input
+        type="password"
+        placeholder="Enter your password"
+        [value]="password"
+        (valueChange)="password = $event">
+      </app-custom-text-input>
+    </div>
+  </div>
+
+  <div class="footer-section">
+    <p class="login-text">
+      Already have an account? 
+      <a class="login-link" (click)="navigateToLogin()">Sign in</a>
+    </p>
+    <app-custom-button
+      title="Register"
+      (buttonClick)="onRegister()"
+      [buttonStyle]="{ width: '100%' }">
+    </app-custom-button>
+    <p class="error-text" *ngIf="error">{{ error }}</p>
+  </div>
+</div>
+

@@ -1,0 +1,55 @@
+.custom-button {
+  background: linear-gradient(135deg, #282365 0%, #4C47A1 100%);
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(40, 35, 101, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(40, 35, 101, 0.4);
+    background: linear-gradient(135deg, #4C47A1 0%, #282365 100%);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(40, 35, 101, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  span {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    z-index: 1;
+  }
+}
+

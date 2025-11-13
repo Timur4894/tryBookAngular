@@ -1,0 +1,51 @@
+<header class="header" *ngIf="authService.isAuthenticated()">
+  <div class="header-container">
+    <div class="logo-section" (click)="navigateTo('/books')">
+      <h1 class="logo">TryBook</h1>
+    </div>
+
+    <nav class="nav-desktop">
+      <a class="nav-link" [routerLink]="['/books']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+        <span class="nav-icon">📚</span>
+        <span>Книги</span>
+      </a>
+      <a class="nav-link" [routerLink]="['/library']" routerLinkActive="active">
+        <span class="nav-icon">📖</span>
+        <span>Моя библиотека</span>
+      </a>
+      <a class="nav-link" [routerLink]="['/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+        <span class="nav-icon">👤</span>
+        <span>Профиль</span>
+      </a>
+    </nav>
+
+    <div class="user-section">
+      <div class="user-info" *ngIf="authService.getCurrentUser()">
+        <span class="user-name">{{ authService.getCurrentUser()?.name }}</span>
+      </div>
+      <button class="logout-btn" (click)="logout()">
+        <span>Выйти</span>
+      </button>
+      <button class="menu-toggle" (click)="toggleMenu()">
+        <span class="hamburger">☰</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav class="nav-mobile" [class.open]="isMenuOpen">
+    <a class="nav-link-mobile" (click)="navigateTo('/books')">
+      <span class="nav-icon">📚</span>
+      <span>Книги</span>
+    </a>
+    <a class="nav-link-mobile" (click)="navigateTo('/library')">
+      <span class="nav-icon">📖</span>
+      <span>Моя библиотека</span>
+    </a>
+    <a class="nav-link-mobile" (click)="navigateTo('/profile')">
+      <span class="nav-icon">👤</span>
+      <span>Профиль</span>
+    </a>
+  </nav>
+</header>
+

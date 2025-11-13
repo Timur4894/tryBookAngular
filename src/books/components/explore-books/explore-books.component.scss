@@ -1,0 +1,208 @@
+.explore-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1C1C28;
+  margin-bottom: 32px;
+  font-family: 'Jost', sans-serif;
+  background: linear-gradient(135deg, #282365 0%, #4C47A1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.search-container {
+  margin-bottom: 40px;
+  max-width: 600px;
+  
+  app-custom-text-input {
+    width: 100%;
+  }
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+}
+
+.book-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-12px);
+    
+    .image-shadow {
+      box-shadow: 0 16px 40px rgba(40, 35, 101, 0.3);
+    }
+
+    .book-name {
+      color: #282365;
+    }
+  }
+}
+
+.image-container {
+  position: relative;
+  margin-bottom: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image-shadow {
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.book-placeholder {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #282365 0%, #4C47A1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.05) 20px
+    );
+    animation: slide 20s linear infinite;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(50px, 50px);
+    }
+  }
+
+  .book-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.placeholder-icon {
+  font-size: 64px;
+  opacity: 0.3;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.placeholder-text {
+  font-size: 72px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Jost', sans-serif;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.book-info {
+  padding: 0 4px;
+}
+
+.book-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1C1C28;
+  margin-bottom: 8px;
+  font-family: 'Jost', sans-serif;
+  transition: color 0.3s ease;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.author-name {
+  font-size: 14px;
+  color: #6E6B8F;
+  font-family: 'Jost', sans-serif;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.book-description {
+  font-size: 13px;
+  color: #6E6B8F;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.book-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #E0E0E0;
+  font-size: 12px;
+  color: #6E6B8F;
+  font-family: 'Jost', sans-serif;
+}
+
+.book-pages {
+  font-weight: 500;
+}
+
+.book-rating {
+  font-weight: 600;
+  color: #F2A65A;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6E6B8F;
+  font-size: 18px;
+  font-family: 'Jost', sans-serif;
+}

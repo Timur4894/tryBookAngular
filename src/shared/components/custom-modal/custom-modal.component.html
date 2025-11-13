@@ -1,0 +1,16 @@
+<div class="modal-overlay" *ngIf="visible" (click)="close()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <h2 class="modal-title">{{ title }}</h2>
+      <p class="modal-text">{{ mainText }}</p>
+    </div>
+    <div class="modal-button-container">
+      <app-custom-button 
+        title="OK" 
+        (buttonClick)="close()"
+        [buttonStyle]="{ width: '100%' }">
+      </app-custom-button>
+    </div>
+  </div>
+</div>
+

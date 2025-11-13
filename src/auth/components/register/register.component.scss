@@ -1,0 +1,66 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #F8F8FC;
+}
+
+.header-section {
+  width: 100%;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 44px;
+  font-family: 'Jost', sans-serif;
+  color: #1C1C28;
+  margin-bottom: 10px;
+}
+
+.form-section {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: #6E6B8F;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-section {
+  width: 100%;
+}
+
+.login-text {
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: #6E6B8F;
+  margin-bottom: 8px;
+}
+
+.login-link {
+  color: #282365;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.error-text {
+  color: #E45865;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+

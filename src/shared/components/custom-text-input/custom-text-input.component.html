@@ -1,0 +1,10 @@
+<input
+  type="{{ type }}"
+  [placeholder]="placeholder"
+  [value]="value"
+  [ngStyle]="inputStyle"
+  (input)="onInputChange($event)"
+  (blur)="valueChange.emit(value)"
+  class="custom-input"
+/>
+

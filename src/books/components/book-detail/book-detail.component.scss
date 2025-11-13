@@ -1,0 +1,117 @@
+.book-detail-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #F8F8FC;
+}
+
+.scroll-content {
+  padding-bottom: 120px;
+}
+
+.image-container {
+  width: 100%;
+  align-self: center;
+  padding-bottom: 14px;
+  height: 320px;
+  background-color: #4C47A1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+}
+
+.image-shadow {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.book-image {
+  width: 180px;
+  height: 240px;
+  border-radius: 20px;
+  margin-top: 50px;
+  object-fit: cover;
+}
+
+.book-info-container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 0 20px;
+}
+
+.book-name {
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  color: #1C1C28;
+  margin-bottom: 8px;
+}
+
+.author-name {
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: #6E6B8F;
+  margin-bottom: 8px;
+}
+
+.book-meta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.meta-item {
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: #1C1C28;
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background-color: #AAAAAA;
+  margin: 0 8px;
+}
+
+.description-container {
+  margin-top: 24px;
+  padding: 0 20px;
+}
+
+.description-title {
+  font-size: 20px;
+  font-family: 'Jost', sans-serif;
+  color: #1C1C28;
+  margin-bottom: 8px;
+}
+
+.description-text {
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: #6E6B8F;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #6E6B8F;
+}
+

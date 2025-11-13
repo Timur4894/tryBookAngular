@@ -1,0 +1,55 @@
+<div class="edit-profile-container">
+  <div class="header-container">
+    <button class="back-button" (click)="goBack()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(180deg);">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+    <h1 class="title">Edit Profile</h1>
+  </div>
+
+  <div class="account-container">
+    <div class="image-container" (click)="handleChangePhoto()">
+      <img [src]="profilePicture" [alt]="name" class="profile-image">
+      <div class="edit-icon-container">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="account-info-container">
+    <div class="input-group">
+      <label class="label">Name</label>
+      <app-custom-text-input
+        type="text"
+        placeholder="Enter your name"
+        [value]="name"
+        (valueChange)="name = $event"
+        [inputStyle]="{ marginBottom: 0 }">
+      </app-custom-text-input>
+    </div>
+
+    <div class="input-group">
+      <label class="label">Email</label>
+      <app-custom-text-input
+        type="email"
+        placeholder="Enter your email"
+        [value]="email"
+        (valueChange)="email = $event"
+        [inputStyle]="{ marginBottom: 0 }">
+      </app-custom-text-input>
+    </div>
+
+    <div class="button-group">
+      <app-custom-button
+        title="Save Changes"
+        (buttonClick)="handleSave()"
+        [buttonStyle]="{ width: '100%' }">
+      </app-custom-button>
+    </div>
+  </div>
+</div>
+

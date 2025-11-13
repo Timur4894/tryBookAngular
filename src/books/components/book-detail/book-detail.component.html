@@ -1,0 +1,47 @@
+<div class="book-detail-container">
+  <div class="scroll-content" *ngIf="book">
+    <div class="image-container">
+      <div class="image-shadow">
+        <img 
+          [src]="book.cover_image || '/assets/img/TestBook.jpg'" 
+          [alt]="book.title"
+          class="book-image">
+      </div>
+    </div>
+
+    <div class="book-info-container">
+      <h1 class="book-name">{{ book.title }}</h1>
+      <p class="author-name">{{ book.author }}</p>
+      <div class="book-meta">
+        <span class="meta-item">{{ book.pages }} pages</span>
+        <span class="divider"></span>
+        <span class="meta-item">{{ book.language }}</span>
+        <span class="divider"></span>
+        <span class="meta-item">{{ book.rating }} rate</span>
+      </div>
+    </div>
+
+    <div class="description-container">
+      <h2 class="description-title">Description</h2>
+      <p class="description-text">{{ book.description || 'No description available.' }}</p>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <app-custom-button
+      title="Read Now"
+      (buttonClick)="onReadNow()"
+      [buttonStyle]="{ width: '48%' }">
+    </app-custom-button>
+    <app-custom-button
+      [title]="isInLibrary ? 'In Library' : 'Add to Library'"
+      (buttonClick)="onAddToLibrary()"
+      [buttonStyle]="{ width: '48%' }">
+    </app-custom-button>
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    <p>Loading book details...</p>
+  </div>
+</div>
+

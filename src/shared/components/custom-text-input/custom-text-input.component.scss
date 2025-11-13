@@ -1,0 +1,30 @@
+.custom-input {
+  border: 2px solid #E0E0E0;
+  border-radius: 16px;
+  width: 100%;
+  padding: 16px 20px;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  color: #1C1C28;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  &:focus {
+    outline: none;
+    border-color: #282365;
+    box-shadow: 0 4px 16px rgba(40, 35, 101, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:hover {
+    border-color: #6E6B8F;
+  }
+
+  &::placeholder {
+    color: #6E6B8F;
+    opacity: 0.7;
+  }
+}
+

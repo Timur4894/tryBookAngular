@@ -1,0 +1,97 @@
+.book-content-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #F8F8FC;
+}
+
+.scroll-content {
+  padding-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 200px;
+}
+
+.content-header {
+  margin-bottom: 24px;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #1C1C28;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  color: #1C1C28;
+  margin-bottom: 8px;
+}
+
+.author {
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: #6E6B8F;
+  margin-bottom: 24px;
+}
+
+.content-container {
+  margin-top: 24px;
+}
+
+.content-title {
+  font-size: 20px;
+  font-family: 'Jost', sans-serif;
+  color: #1C1C28;
+  margin-bottom: 16px;
+}
+
+.content-text {
+  font-size: 18px;
+  font-family: 'Jost', sans-serif;
+  color: #6E6B8F;
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 60px;
+  background-color: #e8e8eb;
+  width: 90%;
+  border-radius: 20px;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-button {
+  width: 48%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #1C1C28;
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  gap: 4px;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
