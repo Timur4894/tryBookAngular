@@ -17,7 +17,12 @@
       (click)="navigateToBookDetail(book.id)">
       <div class="image-container">
         <div class="image-shadow">
-          <div class="book-placeholder">
+          <img 
+            *ngIf="book.cover_url || book.cover_image"
+            [src]="book.cover_url || book.cover_image"
+            [alt]="book.title"
+            class="book-image">
+          <div class="book-placeholder" *ngIf="!(book.cover_url || book.cover_image)">
             <div class="placeholder-icon">📖</div>
             <div class="placeholder-text">{{ book.title.charAt(0) }}</div>
           </div>
@@ -25,11 +30,11 @@
       </div>
       <div class="book-info">
         <p class="book-name">{{ book.title }}</p>
-        <p class="author-name">{{ book.author }}</p>
-        <p class="book-description">{{ book.description }}</p>
+        <p class="author-name">{{ book.author || book.author_name }}</p>
+        <p class="book-description">{{ book.description || 'Description coming soon' }}</p>
         <div class="book-meta">
-          <span class="book-pages">{{ book.pages }} стр.</span>
-          <span class="book-rating">⭐ {{ book.rating }}</span>
+          <span class="book-pages">{{ book.pages || '—' }} pages</span>
+          <span class="book-rating">⭐ {{ book.rating || '—' }}</span>
         </div>
       </div>
     </div>

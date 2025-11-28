@@ -1,94 +1,157 @@
 .edit-profile-container {
   min-height: 100vh;
-  background-color: #F8F8FC;
+  background: #050505;
 }
 
 .header-container {
-  background-color: #1C1B4F;
+  background: #050505;
   padding-top: 60px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    display: none;
+  }
 }
 
 .back-button {
   margin-right: 16px;
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
   cursor: pointer;
   color: #FFFFFF;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(-4px);
+  }
+
+  &:active {
+    transform: translateX(-2px);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .title {
-  font-size: 24px;
-  font-family: 'Jost', sans-serif;
+  font-size: 28px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .account-container {
-  background-color: #1C1B4F;
+  background: #050505;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    display: none;
+  }
 }
 
 .image-container {
   position: relative;
   cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .profile-image {
-  width: 130px;
-  height: 130px;
-  border-radius: 99px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
   object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .edit-icon-container {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #282365;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  background: #0A84FF;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #FFFFFF;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(0, 122, 255, 0.5);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .account-info-container {
-  background-color: #FFFFFF;
-  padding: 20px;
+  background: rgba(28, 28, 30, 0.6);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  padding: 60px 24px 140px;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
-  margin-top: -40px;
-  padding-top: 40px;
-  padding-bottom: 120px;
+  margin-top: -50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .input-group {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .label {
-  font-size: 16px;
-  font-family: 'Jost', sans-serif;
-  color: #1C1C28;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  color: #98989D;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
 }
 
 .button-group {
-  margin-top: 8px;
+  margin-top: 16px;
 }
-

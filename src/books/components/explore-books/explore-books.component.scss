@@ -1,24 +1,36 @@
 .explore-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 24px;
-  animation: fadeIn 0.6s ease-out;
+  padding: 60px 32px;
+  animation: fadeIn 0.8s ease-out;
+  min-height: calc(100vh - 80px);
+  background: #050505;
 }
 
 .title {
-  font-size: 42px;
+  font-size: 56px;
   font-weight: 700;
-  color: #1C1C28;
-  margin-bottom: 32px;
-  font-family: 'Jost', sans-serif;
-  background: linear-gradient(135deg, #282365 0%, #4C47A1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF;
+  margin-bottom: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #0A84FF;
+    border-radius: 2px;
+  }
 }
 
 .search-container {
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   max-width: 600px;
   
   app-custom-text-input {
@@ -28,19 +40,19 @@
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 32px;
-  margin-top: 32px;
+  margin-top: 40px;
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 24px;
   }
 }
 
 .book-card {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation: fadeIn 0.6s ease-out;
   animation-fill-mode: both;
 
@@ -51,143 +63,149 @@
   }
 
   &:hover {
-    transform: translateY(-12px);
+    transform: translateY(-12px) scale(1.02);
     
     .image-shadow {
-      box-shadow: 0 16px 40px rgba(40, 35, 101, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 122, 255, 0.4),
+                  0 0 0 1px rgba(255, 255, 255, 0.1) inset;
     }
 
     .book-name {
-      color: #282365;
+      color: #5AC8FA;
+    }
+
+    .book-info {
+      background: rgba(28, 28, 30, 0.9);
+      border-color: rgba(255, 255, 255, 0.15);
     }
   }
 }
 
 .image-container {
   position: relative;
-  margin-bottom: 16px;
-  border-radius: 16px;
+  margin-bottom: 20px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
 .image-shadow {
-  transition: all 0.3s ease;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   overflow: hidden;
+  background: rgba(28, 28, 30, 0.6);
+}
+
+.book-image {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  .book-card:hover & {
+    transform: scale(1.08);
+  }
 }
 
 .book-placeholder {
   width: 100%;
-  height: 300px;
-  background: linear-gradient(135deg, #282365 0%, #4C47A1 100%);
+  height: 320px;
+  background: #1C1C1E;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.05) 10px,
-      rgba(255, 255, 255, 0.05) 20px
-    );
-    animation: slide 20s linear infinite;
-  }
-
-  @keyframes slide {
-    0% {
-      transform: translate(0, 0);
-    }
-    100% {
-      transform: translate(50px, 50px);
-    }
-  }
-
-  .book-card:hover & {
-    transform: scale(1.05);
+  &::before,
+  &::after {
+    display: none;
   }
 }
 
 .placeholder-icon {
-  font-size: 64px;
-  opacity: 0.3;
-  margin-bottom: 12px;
+  font-size: 72px;
+  opacity: 0.4;
+  margin-bottom: 16px;
   position: relative;
   z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .placeholder-text {
-  font-size: 72px;
+  font-size: 80px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: 'Jost', sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   position: relative;
   z-index: 1;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .book-info {
-  padding: 0 4px;
+  padding: 20px;
+  background: rgba(28, 28, 30, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .book-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: #1C1C28;
-  margin-bottom: 8px;
-  font-family: 'Jost', sans-serif;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   transition: color 0.3s ease;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: -0.3px;
 }
 
 .author-name {
-  font-size: 14px;
-  color: #6E6B8F;
-  font-family: 'Jost', sans-serif;
-  margin-bottom: 12px;
+  font-size: 15px;
+  color: #98989D;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  margin-bottom: 14px;
   line-height: 1.4;
   font-weight: 500;
+  letter-spacing: -0.1px;
 }
 
 .book-description {
-  font-size: 13px;
-  color: #6E6B8F;
-  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: #98989D;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   line-height: 1.6;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   opacity: 0.9;
+  letter-spacing: -0.1px;
 }
 
 .book-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 12px;
-  border-top: 1px solid #E0E0E0;
-  font-size: 12px;
-  color: #6E6B8F;
-  font-family: 'Jost', sans-serif;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  color: #98989D;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
 }
 
 .book-pages {
@@ -196,13 +214,16 @@
 
 .book-rating {
   font-weight: 600;
-  color: #F2A65A;
+  color: #FF9500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .loading {
   text-align: center;
-  padding: 60px 20px;
-  color: #6E6B8F;
+  padding: 80px 20px;
+  color: #98989D;
   font-size: 18px;
-  font-family: 'Jost', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
 }

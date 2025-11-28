@@ -1,0 +1,55 @@
+<div class="modal-overlay" *ngIf="visible" (click)="close()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">Contact Support</h2>
+      <button class="close-button" (click)="close()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-content">
+      <p class="modal-description">
+        Describe your issue and we'll get back to you as soon as possible.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <app-custom-text-input
+          type="text"
+          placeholder="Brief description of your issue"
+          [value]="subject"
+          (valueChange)="subject = $event"
+          [inputStyle]="{ marginBottom: 0 }">
+        </app-custom-text-input>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea
+          class="description-textarea"
+          placeholder="Please provide detailed information about your issue..."
+          [(ngModel)]="description"
+          rows="6"
+          maxlength="1000">
+        </textarea>
+        <div class="character-count">{{ description.length }}/1000</div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-button" (click)="close()" [disabled]="isSubmitting">
+        Cancel
+      </button>
+      <app-custom-button
+        [title]="isSubmitting ? 'Sending...' : 'Send Message'"
+        (buttonClick)="handleSubmit()"
+        [buttonStyle]="{ width: 'auto', minWidth: '140px' }"
+        [disabled]="!subject.trim() || !description.trim() || isSubmitting">
+      </app-custom-button>
+    </div>
+  </div>
+</div>
+

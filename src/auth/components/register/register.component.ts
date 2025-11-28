@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { CustomTextInputComponent } from '../../../shared/components/custom-text
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   email: string = '';
   fullName: string = '';
   password: string = '';
@@ -24,6 +24,13 @@ export class RegisterComponent {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    // Redirect if already authenticated
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/books']);
+    }
+  }
 
   onRegister(): void {
     if (!this.email || !this.fullName || !this.password) {

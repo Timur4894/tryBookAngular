@@ -1,13 +1,13 @@
 <div class="library-container">
   <div class="header-section">
-    <h1 class="title">Моя библиотека</h1>
-    <p class="subtitle">Продолжайте читать ваши любимые книги</p>
+    <h1 class="title">My Library</h1>
+    <p class="subtitle">Keep reading your favorite books</p>
   </div>
   
   <div class="search-container">
     <app-custom-text-input
       type="text"
-      placeholder="Поиск в библиотеке..."
+      placeholder="Search in library..."
       [value]="searchTerm"
       (valueChange)="searchTerm = $event">
     </app-custom-text-input>
@@ -26,8 +26,8 @@
       </div>
       
       <div class="book-info">
-        <h3 class="book-name" (click)="navigateToBookDetail(item.book_id)">{{ item.book?.title || 'Название книги' }}</h3>
-        <p class="author-name">{{ item.book?.author || 'Автор' }}</p>
+        <h3 class="book-name" (click)="navigateToBookDetail(item.book_id)">{{ item.book?.title || 'Book title' }}</h3>
+        <p class="author-name">{{ item.book?.author || 'Author' }}</p>
         
         <div class="progress-info">
           <div class="progress-text">{{ getProgressText(item) }}</div>
@@ -60,11 +60,11 @@
         <div class="book-actions">
           <button class="action-btn continue-btn" (click)="navigateToBookContent(item.book_id)">
             <span>📖</span>
-            <span>Продолжить</span>
+            <span>Continue</span>
           </button>
           <button class="action-btn details-btn" (click)="navigateToBookDetail(item.book_id)">
             <span>ℹ️</span>
-            <span>Детали</span>
+            <span>Details</span>
           </button>
         </div>
       </div>
@@ -73,15 +73,15 @@
 
   <div class="loading" *ngIf="isLoading">
     <div class="loading-spinner"></div>
-    <p>Загрузка библиотеки...</p>
+    <p>Loading library...</p>
   </div>
 
   <div class="empty-state" *ngIf="!isLoading && libraryItems.length === 0">
     <div class="empty-icon">📚</div>
-    <h2>Ваша библиотека пуста</h2>
-    <p>Начните добавлять книги из каталога!</p>
+    <h2>Your library is empty</h2>
+    <p>Start adding books from the catalog!</p>
     <button class="browse-btn" (click)="navigateToBooks()">
-      Перейти к книгам
+      Go to books
     </button>
   </div>
 </div>

@@ -1,33 +1,43 @@
-$primary: #282365;
-$primaryLight: #4C47A1;
-$primaryDark: #1C1B4F;
+$primary: #007AFF;
+$primaryLight: #5AC8FA;
+$background: #000000;
+$backgroundSecondary: #1C1C1E;
 $white: #FFFFFF;
+$textSecondary: #98989D;
 
 .header {
-  background: linear-gradient(135deg, $primary 0%, $primaryDark 100%);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset,
+              0 4px 20px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 .header-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 16px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 32px;
 }
 
 .logo-section {
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
 
@@ -36,9 +46,9 @@ $white: #FFFFFF;
   font-weight: 700;
   color: $white;
   margin: 0;
-  font-family: 'Jost', sans-serif;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0, 122, 255, 0.3);
 }
 
 .nav-desktop {
@@ -55,30 +65,55 @@ $white: #FFFFFF;
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  color: rgba(255, 255, 255, 0.9);
+  gap: 10px;
+  padding: 12px 24px;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  font-size: 16px;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-size: 15px;
   font-weight: 500;
-  font-family: 'Jost', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  letter-spacing: -0.1px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     color: $white;
     transform: translateY(-2px);
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   &.active {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 122, 255, 0.2);
     color: $white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3),
+                0 0 0 1px rgba(0, 122, 255, 0.2) inset;
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   .nav-icon {
     font-size: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
 }
 
@@ -100,27 +135,34 @@ $white: #FFFFFF;
 
 .user-name {
   color: $white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  font-family: 'Jost', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  letter-spacing: -0.1px;
 }
 
 .logout-btn {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: $white;
+  background: rgba(255, 59, 48, 0.15);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  color: #FF3B30;
   padding: 10px 20px;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
-  font-family: 'Jost', sans-serif;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  letter-spacing: -0.1px;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 59, 48, 0.25);
+    border-color: rgba(255, 59, 48, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(255, 59, 48, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   @media (max-width: 768px) {
@@ -130,36 +172,45 @@ $white: #FFFFFF;
 
 .menu-toggle {
   display: none;
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: $white;
   font-size: 24px;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 12px;
   transition: all 0.3s ease;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
-  @media (max-width: 768px) {
-    display: block;
+  @media (min-width: 769px) {
+    display: none;
   }
 }
 
 .nav-mobile {
   display: none;
   flex-direction: column;
-  background: $primaryDark;
+  background: rgba(28, 28, 30, 0.95);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
   padding: 16px;
   gap: 8px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 
   &.open {
-    max-height: 300px;
+    max-height: 400px;
   }
 
   @media (max-width: 768px) {
@@ -171,22 +222,22 @@ $white: #FFFFFF;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 20px;
+  padding: 16px 24px;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 16px;
   transition: all 0.3s ease;
   font-size: 16px;
   font-weight: 500;
-  font-family: 'Jost', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     color: $white;
+    transform: translateX(4px);
   }
 
   .nav-icon {
     font-size: 20px;
   }
 }
-

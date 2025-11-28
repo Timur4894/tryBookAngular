@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import colors from '../../../theme/colors';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   colors = colors;
@@ -26,33 +26,31 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  onLogin(): void {
-    console.log('onLogin called', { email: this.email, password: this.password });
-    
-    // Для тестирования разрешаем логин даже с пустыми полями
-    if (!this.email) {
-      this.email = 'test@example.com';
+  ngOnInit(): void {
+    // Redirect if already authenticated
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/books']);
     }
-    if (!this.password) {
-      this.password = 'test';
+  }
+
+  onLogin(): void {
+    if (!this.email || !this.password) {
+      this.error = 'Please enter email and password';
+      return;
     }
 
     this.isLoading = true;
     this.error = '';
 
-    console.log('Calling authService.login...');
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        console.log('Login successful', response);
         this.isLoading = false;
         this.router.navigate(['/books']).then(() => {
-          console.log('Navigation completed');
-        }).catch((err) => {
-          console.error('Navigation error', err);
+        }).catch(() => {
+          this.error = 'Unable to redirect after sign in';
         });
       },
       error: (err) => {
-        console.error('Login error', err);
         this.error = err.error?.message || 'Login failed. Please try again.';
         this.isLoading = false;
       }

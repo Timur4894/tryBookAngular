@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 import { UserService, UserProfile } from '../../../core/services/user.service';
 import { CustomTextInputComponent } from '../../../shared/components/custom-text-input/custom-text-input.component';
 import { CustomButtonComponent } from '../../../shared/components/custom-button/custom-button.component';
@@ -16,10 +17,10 @@ import { CustomButtonComponent } from '../../../shared/components/custom-button/
 export class EditProfileComponent implements OnInit {
   name: string = '';
   email: string = '';
-  profilePicture: string = '/assets/img/TestBook.jpg';
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     private userService: UserService
   ) {}
 
@@ -28,25 +29,28 @@ export class EditProfileComponent implements OnInit {
   }
 
   loadProfile(): void {
+    // Try to get from AuthService first (cached data)
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) {
+      this.name = currentUser.name || currentUser.fullname || '';
+      this.email = currentUser.email || '';
+    }
+
+    // Then fetch fresh data from API
     this.userService.getProfile().subscribe({
       next: (profile) => {
-        this.name = profile.name;
-        this.email = profile.email;
-        this.profilePicture = profile.profile_picture || '/assets/img/TestBook.jpg';
+        this.name = profile.name || '';
+        this.email = profile.email || '';
       },
       error: (err) => {
         console.error('Error loading profile:', err);
+        // Keep the cached data if API call fails
       }
     });
   }
 
   goBack(): void {
     this.router.navigate(['/profile']);
-  }
-
-  handleChangePhoto(): void {
-    // In a real app, this would open a file picker
-    console.log('Change photo clicked');
   }
 
   handleSave(): void {

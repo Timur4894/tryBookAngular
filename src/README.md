@@ -1,90 +1,90 @@
 # TryBook - Angular Application
 
-Это переписанная версия React Native приложения TryBook на Angular.
+This project rewrites the original TryBook React Native app using Angular standalone components.
 
-## Структура проекта
+## Project structure
 
 ```
-src-angular/
-├── app.component.ts          # Главный компонент приложения
-├── app.config.ts              # Конфигурация приложения (роутинг, HTTP)
-├── app.routes.ts              # Определение маршрутов
-├── main.ts                    # Точка входа
-├── core/                      # Основные сервисы и guards
+src/
+├── app.component.ts          # Root component
+├── app.config.ts              # Application providers (router, HTTP)
+├── app.routes.ts              # Route definitions
+├── main.ts                    # Bootstrap entry
+├── core/
 │   ├── guards/
-│   │   └── auth.guard.ts      # Guard для защиты маршрутов
+│   │   └── auth.guard.ts      # Route guard
 │   ├── interceptors/
-│   │   └── auth.interceptor.ts # HTTP interceptor для добавления токена
+│   │   └── auth.interceptor.ts # Attaches auth token
 │   └── services/
-│       ├── auth.service.ts    # Сервис авторизации
-│       ├── book.service.ts    # Сервис для работы с книгами
-│       ├── library.service.ts # Сервис для работы с библиотекой
-│       └── user.service.ts    # Сервис для работы с пользователями
-├── auth/                      # Модуль авторизации
+│       ├── auth.service.ts    # Authentication API
+│       ├── book.service.ts    # Books API
+│       ├── library.service.ts # Library / reading history API
+│       └── user.service.ts    # Profile API
+├── auth/
 │   └── components/
 │       ├── login/
 │       ├── register/
 │       └── forgot-password/
-├── books/                     # Модуль книг
+├── books/
 │   └── components/
 │       ├── explore-books/
 │       ├── book-detail/
 │       └── book-content/
-├── library/                   # Модуль библиотеки
+├── library/
 │   └── components/
 │       └── my-library/
-├── profile/                   # Модуль профиля
+├── profile/
 │   └── components/
 │       ├── profile/
 │       ├── edit-profile/
 │       └── subscription/
-├── shared/                    # Общие компоненты
+├── shared/
 │   └── components/
 │       ├── custom-button/
 │       ├── custom-text-input/
 │       └── custom-modal/
 └── theme/
-    └── colors.ts              # Цветовая палитра
+    └── colors.ts              # Color palette
 ```
 
-## Основные изменения от React Native
+## Key differences from the React Native app
 
-1. **Компоненты**: Все React Native компоненты переписаны на Angular standalone компоненты
-2. **Навигация**: React Navigation заменен на Angular Router
-3. **State Management**: Redux Toolkit заменен на Angular Services с RxJS
-4. **Стили**: React Native StyleSheet заменен на SCSS файлы
-5. **HTTP**: Используется Angular HttpClient вместо fetch/axios
-6. **Формы**: Используется Angular FormsModule для работы с формами
+1. **Components**: All screens were converted to Angular standalone components.
+2. **Navigation**: React Navigation was replaced by Angular Router.
+3. **State management**: Redux Toolkit was replaced by lightweight services with RxJS.
+4. **Styling**: StyleSheet files were migrated to SCSS modules.
+5. **HTTP**: Axios/fetch calls were replaced with Angular HttpClient.
+6. **Forms**: React Native forms were replaced with Angular FormsModule.
 
-## Установка и запуск
+## Getting started
 
 ```bash
-# Установка зависимостей
+# Install dependencies
 npm install
 
-# Запуск dev сервера
+# Start the dev server
 ng serve
 
-# Сборка для production
+# Production build
 ng build
 ```
 
-## API Endpoints
+## API endpoints
 
-Все сервисы ожидают REST API на `/api/*`:
-- `/api/auth/login` - авторизация
-- `/api/auth/register` - регистрация
-- `/api/auth/forgot-password` - восстановление пароля
-- `/api/books` - список книг
-- `/api/books/:id` - детали книги
-- `/api/library` - библиотека пользователя
-- `/api/users/profile` - профиль пользователя
+The services expect a REST API mounted at `/api/*`:
+- `/api/auth/login`
+- `/api/auth/register`
+- `/api/auth/forgot-password`
+- `/api/books`
+- `/api/books/:id`
+- `/api/library`
+- `/api/users/profile`
 
 ## Guards
 
-- `AuthGuard` - защищает маршруты, требующие авторизации
+- `AuthGuard` protects routes that require authentication.
 
 ## Interceptors
 
-- `AuthInterceptor` - автоматически добавляет токен авторизации к HTTP запросам
+- `AuthInterceptor` automatically injects the bearer token into HTTP requests.
 

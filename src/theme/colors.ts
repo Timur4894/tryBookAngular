@@ -1,32 +1,37 @@
 /**
- * Цветовая палитра приложения TryBook
- * Основная палитра вокруг #282365
+ * TryBook color palette - Dark Apple-inspired style
  */
 
 export const colors = {
-  // Основные цвета
-  primary: '#282365',           // 🟦 Primary - Главный фирменный цвет (кнопки, ссылки, иконки)
-  primaryLight: '#4C47A1',      // 🟪 Primary Light - Освещённый вариант для hover / активных элементов
-  primaryDark: '#1C1B4F',       // 🔵 Primary Dark - Глубокий тень или navbar background
+  // Primary colors
+  primary: '#007AFF',           // Apple Blue
+  primaryLight: '#5AC8FA',      // Light blue
+  primaryDark: '#0051D5',       // Deep blue
   
-  // Фоны
-  background: '#F8F8FC',        // ⚪️ Background - Очень светлый серо-лавандовый для чтения
-  white: '#FFFFFF',             // Белый цвет для текста на темном фоне
+  // Backgrounds (Dark Apple style)
+  background: '#050505',        // Primary background
+  backgroundSecondary: '#0F0F10',
+  backgroundTertiary: '#1C1C1E',
+  cardBackground: '#1C1C1E',
+  cardBackgroundHover: '#2C2C2E',
+  white: '#FFFFFF',
   
-  // Текст
-  textPrimary: '#1C1C28',       // ⚫️ Text Primary - Основной текст (тёмно-серый, не чисто чёрный)
-  textSecondary: '#6E6B8F',     // 🔤 Text Secondary - Подписи, описание книги, второстепенные элементы
+  // Typography
+  textPrimary: '#FFFFFF',
+  textSecondary: '#98989D',
+  textTertiary: '#636366',
   
-  // Акцентные цвета
-  accentSuccess: '#5ABF90',     // 🌿 Accent / Success - Для статусов, кнопок "Читать", индикаторов
-  accentWarning: '#F2A65A',     // 🍊 Accent / Warning - Для прогресса или кнопок "Продолжить чтение"
-  error: '#E45865',             // ❤️ Error / Favorite - Для иконок "лайк/избранное"
+  // Accent colors
+  accentSuccess: '#34C759',     // Apple Green
+  accentWarning: '#FF9500',     // Apple Orange
+  error: '#FF3B30',             // Apple Red
   
-  // Дополнительные цвета
-  border: '#E0E0E0',            // Цвет границ для input и других элементов
-  shadow: '#000000',            // Цвет тени (черный с прозрачностью)
-  cardBackground: '#e8e8eb',    // Фон карточек
-  divider: '#AAAAAA',           // Разделители
+  // Support colors
+  border: '#38383A',
+  borderLight: '#48484A',
+  shadow: '#000000',
+  divider: '#38383A',
+  glass: 'rgba(28, 28, 30, 0.8)',
 };
 
 export default colors;

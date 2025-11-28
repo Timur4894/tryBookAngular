@@ -36,7 +36,6 @@ export class MyLibraryComponent implements OnInit {
     this.isLoading = true;
     this.libraryService.getLibrary().subscribe({
       next: (items) => {
-        // Загружаем информацию о книгах
         this.libraryItems = items.map(item => ({ ...item, book: undefined }));
         
         items.forEach(item => {
@@ -77,7 +76,7 @@ export class MyLibraryComponent implements OnInit {
 
   getProgressText(item: LibraryItem): string {
     const progress = item.reading_progress || 0;
-    return `${progress}% прочитано`;
+    return `${progress}% read`;
   }
 
 }

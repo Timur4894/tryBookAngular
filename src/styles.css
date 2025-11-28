@@ -15,8 +15,8 @@ html, body {
 }
 
 body {
-  background: #F8F8FC;
-  color: #1C1C28;
+  background: #000000;
+  color: #FFFFFF;
   line-height: 1.6;
 }
 
@@ -25,25 +25,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Dark Apple Style */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8F8FC;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6E6B8F;
-  border-radius: 5px;
+  background: #38383A;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #282365;
+  background: #48484A;
 }
 
-/* Animations */
+/* Animations - Apple Style */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -75,6 +75,24 @@ html {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 122, 255, 0.6);
+  }
+}
+
 .fade-in {
   animation: fadeIn 0.5s ease-out;
 }
@@ -95,14 +113,14 @@ html {
   padding: 32px 24px;
 }
 
-/* Loading spinner */
+/* Loading spinner - Apple Style */
 .loading-spinner {
   display: inline-block;
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(40, 35, 101, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  border-top-color: #282365;
+  border-top-color: #007AFF;
   animation: spin 0.8s linear infinite;
 }
 
@@ -112,13 +130,21 @@ html {
   }
 }
 
-/* Card hover effects */
+/* Card hover effects - Apple Style */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(28, 28, 30, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 

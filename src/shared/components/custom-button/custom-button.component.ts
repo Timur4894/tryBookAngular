@@ -12,9 +12,13 @@ export class CustomButtonComponent {
   @Input() title: string = '';
   @Input() buttonStyle: any = {};
   @Input() titleStyle: any = {};
+  @Input() disabled: boolean = false;
   @Output() buttonClick = new EventEmitter<void>();
 
   onClick(): void {
+    if (this.disabled) {
+      return;
+    }
     console.log('CustomButton onClick called');
     this.buttonClick.emit();
     console.log('CustomButton event emitted');

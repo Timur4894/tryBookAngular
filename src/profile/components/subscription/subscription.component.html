@@ -1,15 +1,141 @@
 <div class="subscription-container">
-  <div class="header-container">
+  <div class="header-section">
     <button class="back-button" (click)="goBack()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(180deg);">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
     </button>
     <h1 class="title">Subscription</h1>
+    <p class="subtitle">Choose the plan that's right for you</p>
   </div>
 
   <div class="content-container">
-    <p>Subscription plans and management will be available here.</p>
+    <div class="plans-grid">
+      <!-- Free Plan -->
+      <div class="plan-card" [class.active]="currentPlan === 'free'">
+        <div class="plan-badge free-badge" *ngIf="currentPlan === 'free'">Current Plan</div>
+        <div class="plan-header">
+          <h2 class="plan-name">Free</h2>
+          <div class="plan-price">
+            <span class="price-amount">$0</span>
+            <span class="price-period">/month</span>
+          </div>
+        </div>
+        <div class="plan-features">
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Access to limited books</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Basic reading features</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Community support</span>
+          </div>
+          <div class="feature-item disabled">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span>Offline reading</span>
+          </div>
+          <div class="feature-item disabled">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span>Premium books</span>
+          </div>
+        </div>
+        <button class="plan-button" [class.active]="currentPlan === 'free'" (click)="selectPlan('free')" [disabled]="currentPlan === 'free'">
+          {{ currentPlan === 'free' ? 'Current Plan' : 'Select Plan' }}
+        </button>
+      </div>
+
+      <!-- Premium Plan -->
+      <div class="plan-card premium" [class.active]="currentPlan === 'premium'">
+        <div class="plan-badge premium-badge" *ngIf="currentPlan === 'premium'">Current Plan</div>
+        <div class="plan-badge popular-badge" *ngIf="currentPlan !== 'premium'">Most Popular</div>
+        <div class="plan-header">
+          <h2 class="plan-name">Premium</h2>
+          <div class="plan-price">
+            <span class="price-amount">$9.99</span>
+            <span class="price-period">/month</span>
+          </div>
+        </div>
+        <div class="plan-features">
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Unlimited access to all books</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Advanced reading features</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Priority support</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Offline reading</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Exclusive premium books</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Ad-free experience</span>
+          </div>
+        </div>
+        <button class="plan-button premium-button" [class.active]="currentPlan === 'premium'" (click)="selectPlan('premium')" [disabled]="currentPlan === 'premium'">
+          {{ currentPlan === 'premium' ? 'Current Plan' : 'Upgrade Now' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 16v-4M12 8h.01"></path>
+        </svg>
+        <div class="info-content">
+          <h3>Cancel anytime</h3>
+          <p>You can cancel your subscription at any time with no penalties</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <div class="info-content">
+          <h3>Secure payment</h3>
+          <p>Your payment information is encrypted and secure</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

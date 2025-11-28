@@ -1,92 +1,84 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
+import { Observable, map, switchMap, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface LibraryItem {
   id: number;
   user_id: number;
   book_id: number;
-  added_at: string;
-  reading_progress: number;
-  last_read_at: string;
+  added_at?: string;
+  reading_progress?: number;
+  last_read_at?: string;
   book?: any;
 }
 
 export interface ReadingProgress {
-  chapter: number;
-  progress_percentage: number;
+  chapter?: number;
+  progress_percentage?: number;
+  progress?: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibraryService {
-  private apiUrl = '/api/library';
-  private fakeLibrary: LibraryItem[] = [
-    {
-      id: 1,
-      user_id: 1,
-      book_id: 1,
-      added_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-      reading_progress: 45,
-      last_read_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
-    },
-    {
-      id: 2,
-      user_id: 1,
-      book_id: 3,
-      added_at: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
-      reading_progress: 78,
-      last_read_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-    },
-    {
-      id: 3,
-      user_id: 1,
-      book_id: 5,
-      added_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-      reading_progress: 12,
-      last_read_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
-    }
-  ];
+  private readingHistoryUrl = `${environment.apiUrl}/api/users/reading-history`;
+  private borrowsUrl = `${environment.apiUrl}/api/borrows`;
 
   constructor(private http: HttpClient) {}
 
   getLibrary(): Observable<LibraryItem[]> {
-    // Фейковые данные
-    return of([...this.fakeLibrary]).pipe(delay(300));
+    return this.http.get<any[]>(this.readingHistoryUrl).pipe(
+      map(items => items.map(item => this.normalizeLibraryItem(item)))
+    );
   }
 
   addToLibrary(bookId: number): Observable<LibraryItem> {
-    // Фейковые данные
-    const newItem: LibraryItem = {
-      id: this.fakeLibrary.length + 1,
-      user_id: 1,
-      book_id: bookId,
-      added_at: new Date().toISOString(),
-      reading_progress: 0,
-      last_read_at: new Date().toISOString()
-    };
-    this.fakeLibrary.push(newItem);
-    return of(newItem).pipe(delay(300));
+    return this.http.post<any>(`${this.borrowsUrl}/borrow`, { book_id: bookId }).pipe(
+      map(record => this.normalizeLibraryItem(record))
+    );
   }
 
   removeFromLibrary(bookId: number): Observable<void> {
-    // Фейковые данные
-    const index = this.fakeLibrary.findIndex(item => item.book_id === bookId);
-    if (index !== -1) {
-      this.fakeLibrary.splice(index, 1);
-    }
-    return of(undefined).pipe(delay(300));
+    return this.http.get<any[]>(`${this.borrowsUrl}/active`).pipe(
+      map(records => records.find(record => (record.book_id ?? record.bookId) === bookId)),
+      switchMap(record => {
+        if (!record) {
+          return throwError(() => new Error('Active borrow record not found for this book'));
+        }
+        return this.http.put<void>(`${this.borrowsUrl}/return/${record.id}`, {});
+      })
+    );
   }
 
   updateProgress(bookId: number, progress: ReadingProgress): Observable<void> {
-    // Фейковые данные
-    const item = this.fakeLibrary.find(item => item.book_id === bookId);
-    if (item) {
-      item.reading_progress = progress.progress_percentage;
-      item.last_read_at = new Date().toISOString();
+    const progressValue = progress.progress_percentage ?? progress.progress ?? 0;
+    return this.http.post<void>(`${environment.apiUrl}/api/books/${bookId}/progress`, {
+      progress: progressValue,
+      chapter: progress.chapter
+    });
+  }
+
+  private normalizeLibraryItem(item: any): LibraryItem {
+    if (!item) {
+      return {
+        id: 0,
+        user_id: 0,
+        book_id: 0,
+        reading_progress: 0
+      };
     }
-    return of(undefined).pipe(delay(300));
+
+    return {
+      id: item.id,
+      user_id: item.user_id ?? item.userId ?? 0,
+      book_id: item.book_id ?? item.bookId ?? item.book?.id ?? 0,
+      added_at: item.added_at ?? item.created_at ?? item.borrowed_at,
+      reading_progress: item.reading_progress ?? item.progress ?? 0,
+      last_read_at: item.last_read_at ?? item.updated_at ?? item.returned_at,
+      book: item.book
+    };
   }
 }
 

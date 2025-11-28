@@ -16,9 +16,6 @@ import { CustomModalComponent } from '../../../shared/components/custom-modal/cu
 export class ProfileComponent implements OnInit {
   profile: UserProfile | null = null;
   isModalVisible: boolean = false;
-  isSupportModalVisible: boolean = false;
-  notificationsEnabled: boolean = true;
-  themeEnabled: boolean = true;
 
   constructor(
     private router: Router,
@@ -31,12 +28,28 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile(): void {
+    // Try to get from AuthService first (cached data)
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) {
+      this.profile = {
+        id: currentUser.id,
+        email: currentUser.email || '',
+        name: currentUser.name || currentUser.fullname || '',
+        fullname: currentUser.fullname || currentUser.name,
+        profile_picture: currentUser.profile_picture,
+        role: currentUser.role,
+        subscription: currentUser.subscription
+      };
+    }
+
+    // Then fetch fresh data from API
     this.userService.getProfile().subscribe({
       next: (profile) => {
         this.profile = profile;
       },
       error: (err) => {
         console.error('Error loading profile:', err);
+        // Keep the cached data if API call fails
       }
     });
   }
@@ -49,13 +62,8 @@ export class ProfileComponent implements OnInit {
     this.isModalVisible = true;
   }
 
-  handleOpenSupportModal(): void {
-    this.isSupportModalVisible = true;
-  }
-
   handleCloseModal(): void {
     this.isModalVisible = false;
-    this.isSupportModalVisible = false;
   }
 
   navigateToSubscription(): void {
@@ -63,13 +71,11 @@ export class ProfileComponent implements OnInit {
   }
 
   openPrivacyPolicy(): void {
-    window.open('https://www.google.com', '_blank');
+    this.router.navigate(['/profile/privacy-policy']);
   }
 
   openSupportEmail(): void {
-    const email = 'support@trybook.com';
-    const subject = 'Support Request';
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+    this.router.navigate(['/profile/support']);
   }
 
   logout(): void {

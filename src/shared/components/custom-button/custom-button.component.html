@@ -2,6 +2,7 @@
   type="button"
   [class]="'custom-button'"
   [ngStyle]="buttonStyle"
+  [disabled]="disabled"
   (click)="onClick()"
   style="position: relative; z-index: 10; pointer-events: auto;">
   <span [ngStyle]="titleStyle">{{ title }}</span>

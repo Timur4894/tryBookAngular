@@ -7,15 +7,15 @@
     <nav class="nav-desktop">
       <a class="nav-link" [routerLink]="['/books']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
         <span class="nav-icon">📚</span>
-        <span>Книги</span>
+        <span>Books</span>
       </a>
       <a class="nav-link" [routerLink]="['/library']" routerLinkActive="active">
         <span class="nav-icon">📖</span>
-        <span>Моя библиотека</span>
+        <span>My Library</span>
       </a>
       <a class="nav-link" [routerLink]="['/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
         <span class="nav-icon">👤</span>
-        <span>Профиль</span>
+        <span>Profile</span>
       </a>
     </nav>
 
@@ -24,7 +24,7 @@
         <span class="user-name">{{ authService.getCurrentUser()?.name }}</span>
       </div>
       <button class="logout-btn" (click)="logout()">
-        <span>Выйти</span>
+        <span>Sign Out</span>
       </button>
       <button class="menu-toggle" (click)="toggleMenu()">
         <span class="hamburger">☰</span>
@@ -36,15 +36,15 @@
   <nav class="nav-mobile" [class.open]="isMenuOpen">
     <a class="nav-link-mobile" (click)="navigateTo('/books')">
       <span class="nav-icon">📚</span>
-      <span>Книги</span>
+      <span>Books</span>
     </a>
     <a class="nav-link-mobile" (click)="navigateTo('/library')">
       <span class="nav-icon">📖</span>
-      <span>Моя библиотека</span>
+      <span>My Library</span>
     </a>
     <a class="nav-link-mobile" (click)="navigateTo('/profile')">
       <span class="nav-icon">👤</span>
-      <span>Профиль</span>
+      <span>Profile</span>
     </a>
   </nav>
 </header>

@@ -1,66 +1,118 @@
 .register-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
   min-height: 100vh;
-  background-color: #F8F8FC;
+  background: #050505;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-out;
+
+  &::before,
+  &::after {
+    display: none;
+  }
 }
 
 .header-section {
   width: 100%;
-  align-items: flex-start;
+  max-width: 450px;
+  text-align: center;
+  margin-bottom: 48px;
+  animation: slideIn 0.8s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .title {
-  font-size: 44px;
-  font-family: 'Jost', sans-serif;
-  color: #1C1C28;
-  margin-bottom: 10px;
+  font-size: 56px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
 }
 
 .form-section {
   width: 100%;
+  max-width: 450px;
+  background: rgba(28, 28, 30, 0.8);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  padding: 40px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  animation: fadeIn 1s ease-out;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  }
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
 .label {
-  font-size: 16px;
-  font-family: 'Jost', sans-serif;
-  color: #6E6B8F;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  color: #98989D;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
 }
 
 .footer-section {
   width: 100%;
+  max-width: 450px;
+  animation: fadeIn 1.2s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .login-text {
   font-size: 16px;
-  font-family: 'Jost', sans-serif;
-  color: #6E6B8F;
-  margin-bottom: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  color: #98989D;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: -0.1px;
 }
 
 .login-link {
-  color: #282365;
+  color: #007AFF;
   cursor: pointer;
   text-decoration: none;
-}
+  font-weight: 600;
+  transition: all 0.3s ease;
 
-.login-link:hover {
-  text-decoration: underline;
+  &:hover {
+    color: #5AC8FA;
+    text-decoration: underline;
+  }
 }
 
 .error-text {
-  color: #E45865;
+  color: #FF3B30;
   font-size: 14px;
-  margin-top: 10px;
+  margin-top: 16px;
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  padding: 12px;
+  background: rgba(255, 59, 48, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  animation: slideIn 0.3s ease-out;
 }
-
